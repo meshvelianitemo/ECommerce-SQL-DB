@@ -1,0 +1,6 @@
+ProductId,ChangeQuantity,Reason
+1000,-1,Order placed
+1001,-1,Order placed
+1003,-2,Order placed
+1004,-2,Order placed
+1002,10,Stock replenishment

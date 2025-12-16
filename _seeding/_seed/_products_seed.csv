@@ -1,0 +1,6 @@
+ProductName,SKU,UnitPrice,StockQuantity,IsDiscontinued
+Laptop Dell XPS 15,DLL-XPS15-001,4500.00,10,0
+iPhone 14 Pro,APL-IP14P-002,3200.00,25,0
+Samsung Galaxy S23,SMS-S23-003,2800.00,30,0
+Logitech MX Master 3,LOG-MXM3-004,350.00,50,0
+USB-C Charging Cable,USBC-CBL-005,25.00,200,0

@@ -1,0 +1,6 @@
+FirstName,LastName,Email,Phone,IsActive
+John,Doe,john.doe@email.com,+995555111111,1
+Jane,Smith,jane.smith@email.com,+995555222222,1
+Temo,Meshveliani,temo.mesh@email.com,+995555333333,1
+Nika,Beridze,nika.beridze@email.com,+995555444444,0
+Anna,Kapanadze,anna.k@email.com,+995555555555,1
