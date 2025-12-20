@@ -42,7 +42,7 @@ CREATE TABLE OrderStatus
 OrderStatusId INT IDENTITY(1000,1), --primary key
 StatusName NVARCHAR(50) NOT NULL , --check
 CONSTRAINT PK_OrderStatus_OrderStatusId PRIMARY KEY(OrderStatusId), 
-CONSTRAINT CH_OrderStatus_StatusName CHECK (StatusName IN ('Created','Paid','Shipped','Completed','Cancelled'))
+CONSTRAINT CH_OrderStatus_StatusName CHECK (StatusName IN ('Created','Paid','Shipped','Completed','Cancelled', 'Processing','Returned','Refunded','On Hold','Failed'))
 );
 GO
 
