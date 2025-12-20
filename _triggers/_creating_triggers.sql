@@ -2,7 +2,7 @@ USE ECommerce;
 GO
 
 --creating trigger to update stock and log new orders in InventoryLog table
-CREATE TRIGGER trg_OrderItems_DecreaseStock 
+CREATE TRIGGER trg_OrderItems_DecreaseStock_
 ON OrderItems
 AFTER INSERT 
 AS
@@ -24,7 +24,26 @@ BEGIN
 END;
 GO 
 
---creating a trigger to prevent making orders of discontinued products
+--creating a trigger to update TotalAmount of OrderTables each time new OrderItem gets inserted
+
+CREATE TRIGGER trg_Update_Orders_TotalAmount
+ON OrderItems
+AFTER INSERT 
+AS 
+BEGIN
+	SET NOCOUNT ON;
+
+	UPDATE o 
+	SET o.TotalAmount = (
+		SELECT SUM(oi.LineTotal)
+		FROM OrderItems oi
+		WHERE oi.OrderId = o.OrderId)
+	FROM Orders o
+	JOIN inserted i ON o.OrderId = i.OrderId;
+END;
+GO
+
+--creating a trigger to prevent making orders of discontinued products and also fetching actual UnitPrice from Products table instead of eternally inserting every time 
 
 CREATE TRIGGER trg_Block_Discontinued_Products
 ON OrderItems
@@ -43,8 +62,9 @@ BEGIN
 	END
 
 	INSERT INTO OrderItems (OrderId, ProductId, Quantity, UnitPrice)
-	SELECT OrderId, ProductId, Quantity, UnitPrice
-	FROM inserted;
+	SELECT i.OrderId, i.ProductId, i.Quantity, p.UnitPrice
+	FROM inserted i
+	JOIN Products p ON i.ProductId = p.ProductId
 END;
 GO
 
@@ -67,3 +87,6 @@ BEGIN
 	inserted i ON d.OrderId = i.OrderId
     WHERE d.OrderStatusId <> i.OrderStatusId;
 END;
+GO
+
+
