@@ -38,7 +38,7 @@ BEGIN
         WHERE p.IsDiscontinued = 1
 	)
 	BEGIN
-		RAISERROR ('Cannot order discounted products.', 16, 1);
+		RAISERROR ('Cannot order discontinued products.', 16, 1);
 		RETURN;
 	END
 
